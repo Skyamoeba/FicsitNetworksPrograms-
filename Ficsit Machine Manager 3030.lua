@@ -13,6 +13,7 @@ CBeep            = false
 EnableStausLight = false
 AlertForAnyPWR   = true -- if this is true then any pwr issues will need change the status light, false it will not trigger onlyin the display you will see issues
 EnableScreen     = true
+setup            = false
 
 --###### SERVER LOGGER #########
 ServerLogger     = false
@@ -67,7 +68,8 @@ end
 SAT = {true, false}
 SYS_Stat = {" [INFO  ] ",
             " [System] ",
-            " [Error ] "}
+            " [Error ] ",
+            " [  On  ] "}
 
 
 ERR = {"[System] : Error Detected Starting Self Check ", 
@@ -199,7 +201,7 @@ end
 
 local function Round(x)
 local f = math.floor(x)
- if (x == f) or (x % 2.0 == 0.5) then
+ if (x == f) or (x % 2.0 == 0.5) then --(x % 2.0 == 0.5)
   return f
  else 
   return math.floor(x + 0.05)
@@ -292,7 +294,7 @@ gpu:setForeground(1,1,1,1) gpu:setBackground(0,0,0,0)
 write(80,y,"Machine Switch Is Set to Standby ")
 else
 gpu:setForeground(0,0,0,1) gpu:setBackground(0,1,0,1) 
-write(x,y,"          ") 
+write(x,y,SYS_Stat[4]) 
 end 
 end
 
@@ -310,12 +312,29 @@ write(80,y,"Power Switch is Off ")
    write(80,y,"Machine Switch Is Set to Standby ")
  else
   gpu:setForeground(0,0,0,1) gpu:setBackground(0,1,0,1) 
-write(x,y,"          ")
+write(x,y,SYS_Stat[4])
+
+
 end
 end
 
+if setup == true then
+if HSwitch == true then 
+gpu:setForeground(0,0,0,1) gpu:setBackground(0,1,0,0.5)
+write(80,y,"[ Switch ]") 
+else
+gpu:setForeground(0,0,0,0.5) gpu:setBackground(1,0,0,0.5)
+write(80,y,"[ Switch ]") 
+end
 
-if HLight  == true then end
+if HLight == true then 
+gpu:setForeground(0,0,0,1) gpu:setBackground(0,1,0,0.5)
+write(91,y,"[ Light ]") 
+else
+gpu:setForeground(0,0,0,0.5) gpu:setBackground(1,0,0,0.5)
+write(91,y,"[ Light ]") 
+end
+end
 
 end -- EnableScreen
 
@@ -390,7 +409,7 @@ write(x,y,"|                                 |          |         |         |   
 end
 
 function Sys_BatDis(x,y,Contents)
-write(x,y,"O==[ Machine Name /  Making   ] ==O=[ Prog ]=O=[ Pwr ]=O=[ Eff ]=O=[ Status ]=O=[ Errors ]========================O")
+write(x,y,"O==[ Machine Name /  Making   ] ==O=[ Prog ]=O=[ Pwr ]=O=[ Eff ]=O=[ Status ]=O=[ Info / System / Errors ]========O")
 y = y + 1
 LineBreak(x,y)
 y = y + 1
