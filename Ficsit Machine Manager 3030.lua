@@ -22,29 +22,31 @@ NetworkCard      = "989413BC4CB77125E97DC5B94290D58B" -- Work in progress
 DataPort         = 3
 --######################################################################################################
 
-Smelter      = {100 ,"Smelter" ,0,0,0,0,"Smelter"}
-Foundry      = {100 ,"Foundry" ,0,0,0,0,"Foundry"}
+Miner        = {100 ,"Miner       " ,0,0,0,0,"Miner"}
+Smelter      = {100 ,"Smelter     " ,0,0,0,0,"Smelter"}
+Foundry      = {100 ,"Foundry     " ,0,0,0,0,"Foundry"}
 Constructor  = {100 ,"Constructor " ,0,0,0,0,"Constructor"}
 Assembler    = {100 ,"Assembler   " ,0,0,0,0,"Assembler"}
 Manufacture  = {100 ,"Manufacture " ,0,0,0,0,"Manufacture"}
-Packager     = {100 ,"Packager " ,0,0,0,0,"Packager"}
-Refinery     = {100 ,"Refinery " ,0,0,0,0,"Refinery"}
-Blender      = {100 ,"Blender  " ,0,0,0,0,"Blender"}
+Packager     = {100 ,"Packager    " ,0,0,0,0,"Packager"}
+Refinery     = {100 ,"Refinery    " ,0,0,0,0,"Refinery"}
+Blender      = {100 ,"Blender     " ,0,0,0,0,"Blender"}
 ParticleAcc  = {100 ,"Particle Acc" ,0,0,0,0,"ParticleAcc"}
 
 
 
 
 function MachineList()
-MachineStatus(0,8,Smelter,false,false)
-MachineStatus(0,9,Foundry,false,false)
-MachineStatus(0,10,Constructor,true,false)
-MachineStatus(0,11,Assembler,false,false)
-MachineStatus(0,12,Manufacture,false,false)
-MachineStatus(0,13,Packager,false,false)
-MachineStatus(0,14,Refinery,false,false)
-MachineStatus(0,15,Blender,false,false)
-MachineStatus(0,16,ParticleAcc,false,false)
+MachineStatus(0,8,Miner,false,false,true)
+MachineStatus(0,9,Smelter,false,false)
+MachineStatus(0,10,Foundry,false,false)
+MachineStatus(0,11,Constructor,true,false)
+MachineStatus(0,12,Assembler,false,false)
+MachineStatus(0,13,Manufacture,false,false)
+MachineStatus(0,14,Packager,false,false)
+MachineStatus(0,15,Refinery,false,false)
+MachineStatus(0,16,Blender,false,false)
+MachineStatus(0,17,ParticleAcc,false,false)
 
 end
 --############################################################################
@@ -186,7 +188,7 @@ end
 
 -- Main Program Functions Go Here:
 
-function MachineStatus(DisX,DisY,Contents,HSwitch,HLight) --#######################################################################################
+function MachineStatus(DisX,DisY,Contents,HSwitch,HLight,Miner) --#######################################################################################
 if FLAG == 0 then
  if TEST == 1 then
   Contents[3] = 0
@@ -246,15 +248,16 @@ CycleTime   = Machine.cycletime
 --MaxPoten    = Machine.maxPotential
 --MinPoten    = Machine.minPotential
 Standby     = Machine.standby
---Poten       = Machine.potential
+
+if Miner == true then else
+Poten       = Machine.potential
 RawRecipe   = Machine:getRecipe()
 Rname       = RawRecipe.name -- Gets the name of the Recipe being used
-
 InventoryIn = Machine:getInputInv()
 InventoryOut= Machine:getOutputInv()
-
 InputCon = InventoryIn.itemCount
 OutputCon= InventoryOut.itemCount
+end
 
 PPercent = Progress *100/1 -- Sorts the percentages out for progress
 ProdEf   = ProdEff *100/1 -- Sorts the percentages out for Production Efficency
@@ -265,11 +268,7 @@ y = DisY
 x = x + 2
 y = y + 1
 
---if Page == 0 then 
 write(x,y,Contents[2]) 
---else
---write(x,y,Rname)
---end
 
 x=x + 34
 
@@ -278,7 +277,7 @@ x = x + 11
 write(x,y,Round(Consumption))
 x = x + 10
 write(x,y,Round(ProdEf))
-write(80,y,Rname)
+if Miner == true then write(80,y,"Mining") else write(80,y,Rname) end
 
 if HSwitch == false then 
 x = x + 10
