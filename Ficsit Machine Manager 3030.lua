@@ -32,8 +32,8 @@ Packager     = {100 ,"Packager    " ,0,0,0,0,"Packager"}
 Refinery     = {100 ,"Refinery    " ,0,0,0,0,"Refinery"}
 Blender      = {100 ,"Blender     " ,0,0,0,0,"Blender"}
 ParticleAcc  = {100 ,"Particle Acc" ,0,0,0,0,"ParticleAcc"}
-
-
+OilExtractor = {100 ,"OilExtractor" ,0,0,0,0,"OilExtractor"}
+ResourceWell = {100 ,"Resource Well" ,0,0,0,0,"ResourceWell"}
 
 
 function MachineList()
@@ -47,7 +47,8 @@ MachineStatus(0,14,Packager,false,false)
 MachineStatus(0,15,Refinery,false,false)
 MachineStatus(0,16,Blender,false,false)
 MachineStatus(0,17,ParticleAcc,false,false)
-
+MachineStatus(0,18,OilExtractor,false,false,true)
+MachineStatus(0,19,ResourceWell,false,false,true)
 end
 --############################################################################
 -- Anything after this point you should not have to change.
@@ -93,8 +94,8 @@ if EnableStausLight == true then progstat = component.proxy(component.findCompon
 dev = 0
 local ProgName = ("Ficsit Machine Manager 3030 ")
 local By = ("Skyamoeba")
-local Ver = ("0.0.2")
-local UVer = {"0.0.2","4.0.0","0.3.6"} -- keep this here until you can pull pastes from Git / pastebin
+local Ver = ("0.0.3")
+local UVer = {"0.0.3","4.0.0","0.3.6"} -- keep this here until you can pull pastes from Git / pastebin
 local MVer = ("0.3.6")
 local BFlag = 0
 Page = 0
