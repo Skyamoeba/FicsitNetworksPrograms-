@@ -57,7 +57,6 @@ end
 
 -- System Screen Sys P1/3 #############################################################################--
 if EnableScreen == true then 
-SystemScreenSys = {"System Screen Sys Ver: ","1.0.1"}
 gpu = computer.getPCIDevices(findClass("GPU_T1_C"))[1]
 screen = computer.getPCIDevices(findClass("FINComputerScreen"))[1]
 gpu:bindScreen(screen)
@@ -92,8 +91,8 @@ if EnableStausLight == true then progstat = component.proxy(component.findCompon
 dev = 0
 local ProgName = ("Ficsit Machine Manager 3030 ")
 local By = ("Skyamoeba")
-local Ver = ("0.0.1")
-local UVer = {"0.0.1","4.0.0","0.3.6"} -- keep this here until you can pull pastes from Git / pastebin
+local Ver = ("0.0.2")
+local UVer = {"0.0.2","4.0.0","0.3.6"} -- keep this here until you can pull pastes from Git / pastebin
 local MVer = ("0.3.6")
 local BFlag = 0
 Page = 0
@@ -105,11 +104,6 @@ Hrs = 0
 Mins = 0
 Sec = 0
 Cat = 0
-
---Error Handler for the batterys
---Battery1  = {1 ,Battery_DisplayName[1] ,0,0,0,0,Batterys_Bank[1] }
-
-
 
 -- Screen System Main P2/3 ############################################################################-- 
 --print(SystemScreenSys[1]..SystemScreenSys[2])
@@ -271,11 +265,11 @@ y = DisY
 x = x + 2
 y = y + 1
 
-if Page == 0 then 
+--if Page == 0 then 
 write(x,y,Contents[2]) 
-else
-write(x,y,Rname)
-end
+--else
+--write(x,y,Rname)
+--end
 
 x=x + 34
 
@@ -284,6 +278,7 @@ x = x + 11
 write(x,y,Round(Consumption))
 x = x + 10
 write(x,y,Round(ProdEf))
+write(80,y,Rname)
 
 if HSwitch == false then 
 x = x + 10
@@ -409,7 +404,7 @@ write(x,y,"|                                 |          |         |         |   
 end
 
 function Sys_BatDis(x,y,Contents)
-write(x,y,"O==[ Machine Name /  Making   ] ==O=[ Prog ]=O=[ Pwr ]=O=[ Eff ]=O=[ Status ]=O=[ Info / System / Errors ]========O")
+write(x,y,"O==[ Machine Name ] ==============O=[ Prog ]=O=[ Pwr ]=O=[ Eff ]=O=[ Status ]=O=[ Info / Making / Errors ]========O")
 y = y + 1
 LineBreak(x,y)
 y = y + 1
