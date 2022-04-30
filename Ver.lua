@@ -131,7 +131,7 @@ encode = function(val, stack)
 end
 
 
-function json.encode(val)
+function Ver.encode(val)
   return ( encode(val) )
 end
 
