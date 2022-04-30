@@ -1,9 +1,7 @@
 local encode
 
-local Version = 100
-
 function Ver.encode(CurentVer)
-if CurrentVer < Version then
+if CurrentVer < 100 then
     return true
   else
     return false 
