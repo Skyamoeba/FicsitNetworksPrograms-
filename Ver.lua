@@ -2,9 +2,9 @@ local encode
 
 function Ver.encode(CurentVer)
 if CurrentVer < 100 then
-    return true
+    return Ver = true
   else
-    return false 
+    return Ver = false 
 end
 
 return Ver
