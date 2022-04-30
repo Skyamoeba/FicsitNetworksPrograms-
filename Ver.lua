@@ -7,7 +7,7 @@ local json = { _version = "0.1.2" }
 local encode
 
 local function Version()
-  update = 101
+  update = 100
   return (update)
   end
 
