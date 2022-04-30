@@ -5,9 +5,9 @@ local function Version()
   return (update)
   end
 
-function json.encode(val)
+function Ver.encode(val)
   return ( Version(val) )
 end
 
 
-return json
+return Ver
