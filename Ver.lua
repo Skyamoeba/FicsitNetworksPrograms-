@@ -6,13 +6,13 @@ local json = { _version = "0.1.2" }
 
 local encode
 
-function Ver.Version()
-  update = 100
+local function Version()
+  update = 101
   return (update)
   end
 
 function json.encode(val)
-  return ( encode(val) )
+  return ( Version(val) )
 end
 
 
