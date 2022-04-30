@@ -1,7 +1,7 @@
 local encode
 
 function Ver.encode()
-  return ("101")
+  return 100
 end
 
 return Ver
