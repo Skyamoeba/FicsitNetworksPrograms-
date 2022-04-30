@@ -1,6 +1,6 @@
 local encode
 
-function Ver.encode(CurentVer)
+function Ver.encode()
 return {100}
 end
 
