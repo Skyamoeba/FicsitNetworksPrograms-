@@ -30,6 +30,10 @@ local json = { _version = "0.1.2" }
 
 local encode
 
+function Ver.Version()
+  return 100
+  end
+
 local escape_char_map = {
   [ "\\" ] = "\\",
   [ "\"" ] = "\"",
