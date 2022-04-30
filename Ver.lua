@@ -6,7 +6,7 @@ local function Version()
   end
 
 function Ver.encode(val)
-  return ( Version(val) )
+  --return ( Version(val) )
 end
 
 
