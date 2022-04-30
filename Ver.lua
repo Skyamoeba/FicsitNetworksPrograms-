@@ -31,7 +31,8 @@ local json = { _version = "0.1.2" }
 local encode
 
 function Ver.Version()
-  return 100
+  update = 100
+  return (update)
   end
 
 local escape_char_map = {
