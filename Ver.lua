@@ -31,7 +31,7 @@ local Ver = { _version = "0.1.2" }
 local encode
 
 function Ver.encode()
-  return (100)
+  return ("100")
 end
 
 return Ver
