@@ -1,7 +1,8 @@
 local encode
 
 function Ver.encode()
-return 100
+  Ver = 100
+return Ver
 end
 
 return Ver
