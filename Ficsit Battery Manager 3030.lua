@@ -14,27 +14,19 @@ EnableStausLight = true
 AlertForAnyPWR   = true -- if this is true then any pwr issues will need change the status light, false it will not trigger onlyin the display you will see issues
 EnableScreen     = true
 
---###### SERVER LOGGER #########
+-- Local Network Settings
 ServerLogger     = false
 ServerAddress    = "DC73C2544A7BF761FB9BED8C695A5678" -- Work in progress
 NetworkCard      = "989413BC4CB77125E97DC5B94290D58B" -- Work in progress
 DataPort         = 3
---######################################################################################################
+--###### End Of LNS ######
 
 Power_Monitor = "PWRIncoming" --State the network connection for the incoming power
 
-Batterys_Bank = {"Battery1","Battery2","Battery3","Battery4","Battery5",
+Batterys_Bank = {"Bank1","Battery2","Battery3","Battery4","Battery5",
                  "Battery6","Battery7","Battery8","Battery9","Battery10",
                  "Battery11","Battery12","Battery13","Battery14","Battery15",
                  "Battery16","Battery17","Battery18","Battery19","Battery20"}
-
-Battery_DisplayName = {"Battery 1","Battery 2","Battery 3","Battery 4","Battery 5",
-                       "Battery 6","Battery 7","Battery 8","Battery 9","Battery 10",
-                       "Battery 11","Battery 12","Battery 13","Battery 14","Battery 15",
-                       "Battery 16","Battery 17","Battery 18","Battery 19","Battery 20"}
-
-
-
 
 
 --############################################################################
@@ -72,13 +64,18 @@ FLAG = 0
 TEST = 0
 IND = 0
 ChkDis = false
-if EnableStausLight == true then progstat = component.proxy(component.findComponent(STA)[1]) end
+if EnableStausLight == true then 
+progstat = component.proxy(component.findComponent(STA)[1]) 
+
+end
 dev = 0
 local ProgName = ("Ficsit Battery Manager 3030   ")
 local By = ("Skyamoeba")
+
 local Ver = ("1.0.0")
-local UVer = {"1.0.0","4.0.0","0.2.1"} -- keep this here until you can pull pastes from Git / pastebin
-local MVer = ("0.2.1")
+local currentver    = 100
+local MVer = ("0.3.6")
+local currentModVer = 36
 local BFlag = 0
 Page = 0
 fCont = {0,0,0,0,0,0,0,0,0,0,0}
@@ -91,27 +88,26 @@ Sec = 0
 Cat = 0
 
 --Error Handler for the batterys
-Battery1  = {1 ,Battery_DisplayName[1] ,0,0,0,0,Batterys_Bank[1] }
-Battery2  = {1 ,Battery_DisplayName[2] ,0,0,0,0,Batterys_Bank[2] }
-Battery3  = {1 ,Battery_DisplayName[3] ,0,0,0,0,Batterys_Bank[3] }
-Battery4  = {1 ,Battery_DisplayName[4] ,0,0,0,0,Batterys_Bank[4] }
-Battery5  = {1 ,Battery_DisplayName[5] ,0,0,0,0,Batterys_Bank[5] }
-Battery6  = {1 ,Battery_DisplayName[6] ,0,0,0,0,Batterys_Bank[6] }
-Battery7  = {1 ,Battery_DisplayName[7] ,0,0,0,0,Batterys_Bank[7] }
-Battery8  = {1 ,Battery_DisplayName[8] ,0,0,0,0,Batterys_Bank[8] }
-Battery9  = {1 ,Battery_DisplayName[9] ,0,0,0,0,Batterys_Bank[9] }
-Battery10 = {1 ,Battery_DisplayName[10],0,0,0,0,Batterys_Bank[10]}
-Battery11 = {1 ,Battery_DisplayName[11],0,0,0,0,Batterys_Bank[11]}
-Battery12 = {1 ,Battery_DisplayName[12],0,0,0,0,Batterys_Bank[12]}
-Battery13 = {1 ,Battery_DisplayName[13],0,0,0,0,Batterys_Bank[13]}
-Battery14 = {1 ,Battery_DisplayName[14],0,0,0,0,Batterys_Bank[14]}
-Battery15 = {1 ,Battery_DisplayName[15],0,0,0,0,Batterys_Bank[15]}
-Battery16 = {1 ,Battery_DisplayName[16],0,0,0,0,Batterys_Bank[16]}
-Battery17 = {1 ,Battery_DisplayName[17],0,0,0,0,Batterys_Bank[17]}
-Battery18 = {1 ,Battery_DisplayName[18],0,0,0,0,Batterys_Bank[18]}
-Battery19 = {1 ,Battery_DisplayName[19],0,0,0,0,Batterys_Bank[19]}
-Battery20 = {1 ,Battery_DisplayName[20],0,0,0,0,Batterys_Bank[20]}
-
+Battery1  = {1 ,Batterys_Bank[1] ,0,0,0,0,Batterys_Bank[1] }
+Battery2  = {1 ,Batterys_Bank[2] ,0,0,0,0,Batterys_Bank[2] }
+Battery3  = {1 ,Batterys_Bank[3] ,0,0,0,0,Batterys_Bank[3] }
+Battery4  = {1 ,Batterys_Bank[4] ,0,0,0,0,Batterys_Bank[4] }
+Battery5  = {1 ,Batterys_Bank[5] ,0,0,0,0,Batterys_Bank[5] }
+Battery6  = {1 ,Batterys_Bank[6] ,0,0,0,0,Batterys_Bank[6] }
+Battery7  = {1 ,Batterys_Bank[7] ,0,0,0,0,Batterys_Bank[7] }
+Battery8  = {1 ,Batterys_Bank[8] ,0,0,0,0,Batterys_Bank[8] }
+Battery9  = {1 ,Batterys_Bank[9] ,0,0,0,0,Batterys_Bank[9] }
+Battery10 = {1 ,Batterys_Bank[10],0,0,0,0,Batterys_Bank[10]}
+Battery11 = {1 ,Batterys_Bank[11],0,0,0,0,Batterys_Bank[11]}
+Battery12 = {1 ,Batterys_Bank[12],0,0,0,0,Batterys_Bank[12]}
+Battery13 = {1 ,Batterys_Bank[13],0,0,0,0,Batterys_Bank[13]}
+Battery14 = {1 ,Batterys_Bank[14],0,0,0,0,Batterys_Bank[14]}
+Battery15 = {1 ,Batterys_Bank[15],0,0,0,0,Batterys_Bank[15]}
+Battery16 = {1 ,Batterys_Bank[16],0,0,0,0,Batterys_Bank[16]}
+Battery17 = {1 ,Batterys_Bank[17],0,0,0,0,Batterys_Bank[17]}
+Battery18 = {1 ,Batterys_Bank[18],0,0,0,0,Batterys_Bank[18]}
+Battery19 = {1 ,Batterys_Bank[19],0,0,0,0,Batterys_Bank[19]}
+Battery20 = {1 ,Batterys_Bank[20],0,0,0,0,Batterys_Bank[20]}
 
 --Error handler for the power monitor
 PWRIncoming  = {1 ,"",0,0,0,0,Power_Monitor}
@@ -151,12 +147,67 @@ end
 
 -- Screen System Main  P2/3 End --
 
+
+--local Network 
 function SYS_SendStatus(receiver, port, data)
 netcard = component.proxy(NetworkCard)
 netcard:open(port)
 netcard:send(receiver, port, data)
 if Admin == true then print("Data Sent: "..receiver.." / "..port) end
 end
+-- end Local Network
+
+-- Update Checker (part of boot up)
+function UpdateChecker()
+if Debug == true then print("System - Checking For Internet Card") end
+local card = computer.getPCIDevices(findClass("FINInternetCard"))[1]
+if not card then
+	print("[ERROR] - No internet-card found! Please install a internet card!")
+	computer.beep(0.2)
+	return
+end
+
+local req = card:request("https://raw.githubusercontent.com/Skyamoeba/FicsitNetworksPrograms-/main/Ver.lua", "GET", "")
+local _, Ver = req:await()
+filesystem.initFileSystem("/dev")
+filesystem.makeFileSystem("tmpfs", "tmp")
+filesystem.mount("/dev/tmp","/")
+local file = filesystem.open("Ver.lua", "w")
+file:write(Ver)
+file:close()
+filesystem.doFile("Ver.lua")
+
+ModVersion = MODVerD()
+ModVerPrint= MODVerP()
+VersionBatt= VerCheckBattD()
+VerPrint = VerCheckBattP()
+
+if currentModVer < ModVersion then
+print("[FINSYS] - Update Avliable for Ficsit Networks")
+else
+print("[FINSYS] - Latest Version Installed")
+end
+
+if ModVersion < currentModVer then
+print("[FINSYS] - Program has not been tested on this FIN Version : "..MVer)
+end
+
+--if VersionBatt > currentver then
+-- print("[System] - Update Avliable")
+--else
+-- print("[System] - Latest Version Installed")
+--end
+
+end
+--End Of Updater
+
+
+
+
+
+
+
+
 
 --- LightStatus Pole V2 ---
 LightSys = {"Light System Ver : ","2.0.1"}
@@ -283,11 +334,41 @@ if pcall (PWRData) then
 PWRData()
 
 write(37,1,"Battery Site Name : "..SiteName)
-write(37,3,"Production   : "..round(Production))
-write(37,4,"Consumption  : "..round(Consumption))
+write(37,2,"Update Check      : ")
+if currentver < VersionBatt then 
+gpu:setForeground(0,0,0,1)
+gpu:setBackground(1,1,0,1)
+write(57,2,""..VerPrint.." Update Aviliable")
+gpu:setForeground(1,1,1,1)
+gpu:setBackground(0,0,0,0)
+else
+gpu:setForeground(0,0,0,1)
+gpu:setBackground(0,1,0,1)
+write(57,2,"Program Up-To-Date") 
+gpu:setForeground(1,1,1,1)
+gpu:setBackground(0,0,0,0)
+end
+
+write(37,3,"Mod Update Check  : ")
+if currentModVer < ModVersion then 
+gpu:setForeground(0,0,0,1)
+gpu:setBackground(1,1,0,1)
+write(57,3,""..ModVerPrint.." Update Aviliable")
+gpu:setForeground(1,1,1,1)
+gpu:setBackground(0,0,0,0)
+else
+gpu:setForeground(0,0,0,1)
+gpu:setBackground(0,1,0,1)
+write(57,3,"Program Up-To-Date") 
+gpu:setForeground(1,1,1,1)
+gpu:setBackground(0,0,0,0)
+end
+
+write(37,4,"Production   : "..round(Production))
+write(37,5,"Consumption  : "..round(Consumption))
 
 write(87,1,"Total Stored : [        ]")
-write(37,5,"Fuse Status  : [        ]")
+
 
 if RoundDP(TotalPwr,0) == 0         then write(103,1,"        ") end
 if RoundDP(TotalPwr,0) == 100.0 then gpu:setForeground(0,1,0,1) write(110,1,"=")end
@@ -305,15 +386,15 @@ gpu:setBackground(0,0,0,0)
 write(87,2,"% Stored     : "..RoundDP(TotalPwr,0).."%")
 write(87,3,"Battery In   : "..round(BatInput))
 write(87,4,"Battery Out  : "..round(BatOutput))
-
+write(87,5,"Fuse Status  : [        ]")
 
 if Fused == true then 
 gpu:setForeground(1,0,0,1)
-write(53,5,"===//===")
+write(103,5,"===//===")
 FLAG = 1
 else 
 gpu:setForeground(0,1,0,1)
-write(53,5,"========")
+write(103,5,"========")
 if AlertForAnyPWR == false then FLAG = 0 end
 progstat:setColor(0.0, 10.0, 0.0,10.0)
 end
@@ -479,11 +560,11 @@ else write(x,y,"N/A") end
 x = x + 16
 write(x,y,round(Incoming))
 
-if Status == 0 then x = x + 12 gpu:setForeground(0,0,0,1) gpu:setBackground(1,1,0,1) write(x,y," Idle        ") end
-if Status == 1 then x = x + 12 gpu:setForeground(0,0,0,1) gpu:setBackground(1,1,0,1) write(x,y," Idle Empty  ") end
-if Status == 2 then x = x + 12 gpu:setForeground(0,0,0,1) gpu:setBackground(0,1,0,1) write(x,y," Idle Full   ") end
-if Status == 3 then x = x + 12 gpu:setForeground(0,0,0,1) gpu:setBackground(0,1,1,1) write(x,y," Charging    ") end
-if Status == 4 then x = x + 12 gpu:setForeground(1,1,1,1) gpu:setBackground(1,0,0,1) write(x,y," In Use      ") end
+if Status == 0 then x = x + 12 gpu:setForeground(0,0,0,1) gpu:setBackground(1,1,0,0.5) write(x,y," Idle        ") end
+if Status == 1 then x = x + 12 gpu:setForeground(0,0,0,1) gpu:setBackground(1,1,0,0.5) write(x,y," Idle Empty  ") end
+if Status == 2 then x = x + 12 gpu:setForeground(0,0,0,1) gpu:setBackground(0,1,0,0.5) write(x,y," Idle Full   ") end
+if Status == 3 then x = x + 12 gpu:setForeground(0,0,0,1) gpu:setBackground(0,1,1,0.5) write(x,y," Charging    ") end
+if Status == 4 then x = x + 12 gpu:setForeground(0,0,0,1) gpu:setBackground(1,0,0,0.5) write(x,y," In Use      ") end
 
 end -- EnableScreen
 
@@ -522,6 +603,7 @@ write(DisX,y,"| Run Time: "..Days.." | "..Hrs.." : "..Mins.." : "..Sec)
 y = y +1
 write(DisX,y,"O================================O")
 
+
 x = x + 33
 y = DisY + 1
 write(x,y,"|")
@@ -553,7 +635,7 @@ write(x,y,"O--------------------------------------------------------------------
 end
 
 function Sys_BatDis(x,y,Contents)
-write(x,y,"O=[ Battery Name / Location ] =======O=[ Stored ]=O=[ Time E/F ]=O=[ Consuption ]=O=[ Status ]====O=[ Errors ]====O")
+write(x,y,"O=[ Battery Name ] ==================O=[ Stored ]=O=[ Time E/F ]=O=[ Consuption ]=O=[ Status ]====O=[ Errors ]====O")
 y = y + 1
 write(x,y,"|                                    |            |              |                |               |               |")
 y = y + 1
@@ -626,8 +708,6 @@ end
 
 -- Boot Loop -- Add anything thats needs to be loaded before the main loop here
 function Boot()
-
-
 if BFlag == 0 then
 clearScreen()
 write(0,0,"Ficsit Battery Manager 3030   ")
@@ -649,10 +729,8 @@ if EnableScreen == false then print(SYS[4]) else print(SystemScreenSys[1]..Syste
 end
 BFlag = 1
 if EnableStausLight == true then progstat:setColor(10.0, 0.0, 10.0,5.0) end
-print("[System] : Checking....")
-if Ver == UVer[1] then else print("[System] : New Update On Git") end
---if ListVer == UVer[2] then else print("[System] : List is not current version") end
-if MVer == UVer[3] then else print("[System] : Program may not be compactable with this mod version") end
+print("[System] : Checking For Errors / Updates")
+UpdateChecker()
 sleep(5)
 if STA == "" then print("[System] : Program needs setting up") else print("[System] : Boot Ok!") end
  end
@@ -674,7 +752,12 @@ local f = math.floor(x)
 end
 
 function sleep(x)
- event.pull(x)
+ --event.pull(x)
+ x = x * 1000
+local millis = computer.millis()
+    while computer.millis() - millis < x do
+        computer.skip()
+    end
 end
 
 function ITEMLIST()
@@ -756,6 +839,7 @@ end
 
 while true do
 write(0,0,"Booting System Up")
+--computer.reset()
 Boot()
 --print(FLAG)
 MainLoop()
@@ -772,7 +856,7 @@ if FLAG == 1 then if Sec == 30 then selfTest() end else TEST = 0 end
 if EnableScreen == true then gpu:flush() end
 sleep(Refresh_Rate)
 Sec = Sec + 1
-Tick = Tick + 1
+--Tick = Tick + 1
 gpu:flush()
 -- Screen System Main P3/3 End--
 end -- while true loop end
