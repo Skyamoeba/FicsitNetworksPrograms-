@@ -10,11 +10,20 @@ function VersionCheckBatt()
   return 101
   end
 
--- Battery Version Checker
+-- Battery Manager Version Checker
 function VerCheckBattD()
   return 100
   end
 function VerCheckBattP()
   return "1.0.0"
   end
--- End Of Battery Version Checker
+-- End Of Battery Manager Version Checker
+
+-- Drone Manager Version Checker
+function VerCheckBattD()
+  return 001
+  end
+function VerCheckBattP()
+  return "0.0.1"
+  end
+-- End Of Drone Manager Version Checker
