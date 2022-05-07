@@ -5,3 +5,7 @@ function VersionCheckBatt()
 function VersionCheck()
   return 100
   end
+
+function MODVersionCheck()
+  return 100
+  end
