@@ -1,14 +1,16 @@
-Build = "0001-0201FIC-1000    "
+Build = "0001-0201FIC-1025    "
 
 
 -- Status Light #############################
 STA = "StatusLight"
+PAN = {"BatteryManager",0,0,1,0,40,0,1}
+ConPan = 0
 -- ##########################################
 
 
 SiteName = "Battery Storage 1"
 Refresh_Rate = 1
-FicsItNetworksVer= "0.2.1"
+--FicsItNetworksVer= "0.2.1"
 CBeep            = false
 EnableStausLight = true
 AlertForAnyPWR   = true -- if this is true then any pwr issues will need change the status light, false it will not trigger onlyin the display you will see issues
@@ -23,10 +25,7 @@ DataPort         = 3
 
 Power_Monitor = "PWRIncoming" --State the network connection for the incoming power
 
-Batterys_Bank = {"Bank1","Battery2","Battery3","Battery4","Battery5",
-                 "Battery6","Battery7","Battery8","Battery9","Battery10",
-                 "Battery11","Battery12","Battery13","Battery14","Battery15",
-                 "Battery16","Battery17","Battery18","Battery19","Battery20"}
+Batterys_Bank = {"StoreBank1","","","","","","","","","","","","","","","","","","",""}
 
 
 --############################################################################
@@ -64,9 +63,13 @@ FLAG = 0
 TEST = 0
 IND = 0
 ChkDis = false
-if EnableStausLight == true then 
-progstat = component.proxy(component.findComponent(STA)[1]) 
-
+if EnableStausLight == true then
+StatusPanel = component.proxy(component.findComponent(PAN[1])[1]) 
+ProgramStat = StatusPanel:getModule(PAN[2],PAN[3])
+UpdateStat = StatusPanel:getModule(PAN[7],PAN[8])
+text = StatusPanel:getModule(PAN[4],PAN[5])
+text.size = PAN[6]
+text.text = "Battery Manager"
 end
 dev = 0
 local ProgName = ("Ficsit Battery Manager 3030   ")
@@ -162,9 +165,9 @@ function UpdateChecker()
 if Debug == true then print("System - Checking For Internet Card") end
 local card = computer.getPCIDevices(findClass("FINInternetCard"))[1]
 if not card then
-	print("[ERROR] - No internet-card found! Please install a internet card!")
-	computer.beep(0.2)
-	return
+  print("[ERROR] - No internet-card found! Please install a internet card!")
+  computer.beep(0.2)
+  return
 end
 
 local req = card:request("https://raw.githubusercontent.com/Skyamoeba/FicsitNetworksPrograms-/main/Ver.lua", "GET", "")
@@ -234,12 +237,28 @@ end
 
 function Blink(r,g,b)
 if IND == 1 then 
-  progstat:setcolor(1,0,0,5)
+  ProgramStat:setcolor(1,0,0,1.0)
   if CBeep == true then computer.beep() end
   IND = 0
   computer.millis(1000)
 else
-  progstat:setcolor(1,1,1,0)
+  ProgramStat:setcolor(1,1,1,0)
+  IND = 1
+  computer.millis(1000)
+end
+--event.pull(1)
+end
+
+function UpdateBlink()
+if IND == 1 then 
+  UpdateStat:setcolor(1,1,0,10)
+  text.text = VerPrint.." Update"
+  if CBeep == true then computer.beep() end
+  IND = 0
+  computer.millis(1000)
+else
+  text.text = "Battery Manager"
+  UpdateStat:setcolor(1,1,1,0)
   IND = 1
   computer.millis(1000)
 end
@@ -339,12 +358,14 @@ if currentver < VersionBatt then
 gpu:setForeground(0,0,0,1)
 gpu:setBackground(1,1,0,1)
 write(57,2,""..VerPrint.." Update Aviliable")
+UpdateBlink()
 gpu:setForeground(1,1,1,1)
 gpu:setBackground(0,0,0,0)
 else
 gpu:setForeground(0,0,0,1)
 gpu:setBackground(0,1,0,1)
-write(57,2,"Program Up-To-Date") 
+write(57,2,"Program Up-To-Date")
+UpdateStat:setcolor(1,1,1,0)
 gpu:setForeground(1,1,1,1)
 gpu:setBackground(0,0,0,0)
 end
@@ -354,12 +375,13 @@ if currentModVer < ModVersion then
 gpu:setForeground(0,0,0,1)
 gpu:setBackground(1,1,0,1)
 write(57,3,""..ModVerPrint.." Update Aviliable")
+--UpdateBlink()
 gpu:setForeground(1,1,1,1)
 gpu:setBackground(0,0,0,0)
 else
 gpu:setForeground(0,0,0,1)
 gpu:setBackground(0,1,0,1)
-write(57,3,"MOD Up-To-Date") 
+write(57,3,"MOD Up-To-Date")
 gpu:setForeground(1,1,1,1)
 gpu:setBackground(0,0,0,0)
 end
@@ -396,7 +418,7 @@ else
 gpu:setForeground(0,1,0,1)
 write(103,5,"========")
 if AlertForAnyPWR == false then FLAG = 0 end
-progstat:setColor(0.0, 10.0, 0.0,10.0)
+ProgramStat:setColor(0.0, 10.0, 0.0,10.0)
 end
   else FLAG = 1 print(ERR[6]..Contents[7]) Contents[3] = 1
  end
@@ -728,7 +750,7 @@ print("Item List Ver    : ".. ListVer[1])
 if EnableScreen == false then print(SYS[4]) else print(SystemScreenSys[1]..SystemScreenSys[2]) end
 end
 BFlag = 1
-if EnableStausLight == true then progstat:setColor(10.0, 0.0, 10.0,5.0) end
+if EnableStausLight == true then ProgramStat:setColor(10.0, 0.0, 10.0,5.0) end
 print("[System] : Checking For Errors / Updates")
 UpdateChecker()
 sleep(5)
@@ -830,7 +852,7 @@ end
 --##########################################################################################################
 
 function selfTest()
-  if EnableStausLight == true then progstat:setColor(10.0, 0.0, 0.0,10.0) end
+  if EnableStausLight == true then ProgramStat:setColor(10.0, 0.0, 0.0,10.0) end
   print(ERR[2])
   FLAG = 0
   TEST = 1
@@ -846,7 +868,7 @@ MainLoop()
 
 --ErrorBoxDis(0,50)
   if EnableStausLight == true then
-   if FLAG == 0 then progstat:setColor(0.0, 10.0, 0.0,10.0) end
+   if FLAG == 0 then ProgramStat:setColor(0.0, 10.0, 0.0,1) end
     if FLAG == 1 then Blink() end
   end
     
