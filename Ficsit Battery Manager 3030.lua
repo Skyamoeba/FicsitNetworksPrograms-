@@ -1,4 +1,4 @@
-Build = "0001-0201FIC-0006    "
+Build = "0001-0201FIC-1000    "
 
 
 -- Status Light #############################
@@ -74,8 +74,8 @@ local By = ("Skyamoeba")
 
 local Ver = ("1.0.0")
 local currentver    = 100
-local MVer = ("0.3.6")
-local currentModVer = 36
+local MVer = ("0.3.7")
+local currentModVer = 37
 local BFlag = 0
 Page = 0
 fCont = {0,0,0,0,0,0,0,0,0,0,0}
@@ -183,13 +183,13 @@ VersionBatt= VerCheckBattD()
 VerPrint = VerCheckBattP()
 
 if currentModVer < ModVersion then
-print("[FINSYS] - Update Avliable for Ficsit Networks")
+print("[FINSYS] : Update Avliable for Ficsit Networks")
 else
-print("[FINSYS] - Latest Version Installed")
+print("[FINSYS] : Latest Version Installed")
 end
 
 if ModVersion < currentModVer then
-print("[FINSYS] - Program has not been tested on this FIN Version : "..MVer)
+print("[FINSYS] : Program has not been tested on this FIN Version : "..MVer)
 end
 
 --if VersionBatt > currentver then
@@ -359,7 +359,7 @@ gpu:setBackground(0,0,0,0)
 else
 gpu:setForeground(0,0,0,1)
 gpu:setBackground(0,1,0,1)
-write(57,3,"Program Up-To-Date") 
+write(57,3,"MOD Up-To-Date") 
 gpu:setForeground(1,1,1,1)
 gpu:setBackground(0,0,0,0)
 end
@@ -718,7 +718,7 @@ gpu:flush()
 print("O--------------------------------O")
 print("|",ProgName,"|")
 print("| By : "..By,"                |")
-print("| Prg Ver : "..Ver,"              |")
+print("| Prg Ver : "..Ver,"               |")
 print("| Mod Ver : "..MVer,"               |")
 print("| Build   : "..Build.."|")
 print("O--------------------------------O")
