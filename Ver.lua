@@ -1,7 +1,7 @@
-function MODVersD()
+function MODVerD()
   return 37
   end
-function MODVersP()
+function MODVerP()
   return "0.3.7"
   end
 
