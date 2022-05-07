@@ -12,9 +12,9 @@ function VersionCheckBatt()
 
 -- Battery Version Checker
 function VerCheckBattD()
-  return 100
+  return 101
   end
 function VerCheckBattP()
-  return "1.0.0"
+  return "1.0.1"
   end
 -- End Of Battery Version Checker
