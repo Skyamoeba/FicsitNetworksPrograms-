@@ -1,3 +1,7 @@
+function VersionCheckBatt()
+  return 101
+  end
+
 function VersionCheck()
-  return 103
+  return 100
   end
