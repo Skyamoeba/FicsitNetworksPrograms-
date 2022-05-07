@@ -1,5 +1,8 @@
-function MODVersionCheck()
+function MODVersD()
   return 37
+  end
+function MODVersP()
+  return "0.3.7"
   end
 
 -- Test Area Version Checker
