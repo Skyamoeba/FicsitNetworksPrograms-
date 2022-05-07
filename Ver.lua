@@ -7,5 +7,5 @@ function VersionCheck()
   end
 
 function MODVersionCheck()
-  return 100
+  return 37
   end
