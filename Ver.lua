@@ -21,10 +21,10 @@ function VerCheckBattP()
 
 -- Drone Manager Version Checker
 function VerCheckDroneD()
-  return 001
+  return 100
   end
 function VerCheckDroneP()
-  return "0.0.1"
+  return "1.0.0"
   end
 
 -- End Of Drone Manager Version Checker
