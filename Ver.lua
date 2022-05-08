@@ -26,5 +26,13 @@ function VerCheckDroneD()
 function VerCheckDroneP()
   return "1.0.0"
   end
-
 -- End Of Drone Manager Version Checker
+
+-- Drone Manager Version Checker
+function VerCheckDroneMachineD()
+  return 100
+  end
+function VerCheckDroneMachineP()
+  return "1.0.0"
+  end
+-- End Drone Manager Version Checker
