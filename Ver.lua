@@ -28,11 +28,11 @@ function VerCheckDroneP()
   end
 -- End Of Drone Manager Version Checker
 
--- Drone Manager Version Checker
-function VerCheckDroneMachineD()
+-- Machine Manager Version Checker
+function VerCheckMachineD()
   return 100
   end
-function VerCheckDroneMachineP()
+function VerCheckMachineP()
   return "1.0.0"
   end
--- End Drone Manager Version Checker
+-- End Machine Manager Version Checker
