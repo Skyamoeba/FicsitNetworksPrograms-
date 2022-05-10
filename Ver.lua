@@ -93,11 +93,20 @@ function VerCheckFluidP()
   end
 -- End Fluid Manager Version Checker
 
--- Fluid Manager Version Checker
+-- Gas Manager Version Checker
 function VerCheckGasD()
   return 100
   end
 function VerCheckGasP()
   return "1.0.0"
   end
--- End Fluid Manager Version Checker
+-- End Gas Manager Version Checker
+
+-- Storage Manager Version Checker
+function VerCheckStoreD()
+  return 100
+  end
+function VerCheckStoreP()
+  return "1.0.0"
+  end
+-- End Storage Manager Version Checker
